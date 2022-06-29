@@ -9,21 +9,33 @@
 /* Begin PBXBuildFile section */
 		6DF2CD48286D18A500A3EE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD47286D18A500A3EE25 /* AppDelegate.swift */; };
 		6DF2CD4A286D18A500A3EE25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD49286D18A500A3EE25 /* SceneDelegate.swift */; };
-		6DF2CD4C286D18A500A3EE25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD4B286D18A500A3EE25 /* ViewController.swift */; };
 		6DF2CD4F286D18A500A3EE25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF2CD4D286D18A500A3EE25 /* Main.storyboard */; };
 		6DF2CD51286D18A700A3EE25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DF2CD50286D18A700A3EE25 /* Assets.xcassets */; };
 		6DF2CD54286D18A700A3EE25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF2CD52286D18A700A3EE25 /* LaunchScreen.storyboard */; };
+		6DF2CD66286D18E400A3EE25 /* ImaggaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD5C286D18E400A3EE25 /* ImaggaService.swift */; };
+		6DF2CD67286D18E400A3EE25 /* ImaggaColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD5E286D18E400A3EE25 /* ImaggaColor.swift */; };
+		6DF2CD68286D18E400A3EE25 /* UnsplashPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD5F286D18E400A3EE25 /* UnsplashPhoto.swift */; };
+		6DF2CD69286D18E400A3EE25 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD61286D18E400A3EE25 /* UIColor.swift */; };
+		6DF2CD6A286D18E400A3EE25 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD62286D18E400A3EE25 /* UIViewExtension.swift */; };
+		6DF2CD6B286D18E400A3EE25 /* UnsplashRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD64286D18E400A3EE25 /* UnsplashRoute.swift */; };
+		6DF2CD6C286D18E400A3EE25 /* UnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF2CD65286D18E400A3EE25 /* UnsplashService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6DF2CD44286D18A500A3EE25 /* Palette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF2CD47286D18A500A3EE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DF2CD49286D18A500A3EE25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6DF2CD4B286D18A500A3EE25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6DF2CD4E286D18A500A3EE25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6DF2CD50286D18A700A3EE25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DF2CD53286D18A700A3EE25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DF2CD55286D18A700A3EE25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DF2CD5C286D18E400A3EE25 /* ImaggaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImaggaService.swift; sourceTree = "<group>"; };
+		6DF2CD5E286D18E400A3EE25 /* ImaggaColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImaggaColor.swift; sourceTree = "<group>"; };
+		6DF2CD5F286D18E400A3EE25 /* UnsplashPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashPhoto.swift; sourceTree = "<group>"; };
+		6DF2CD61286D18E400A3EE25 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		6DF2CD62286D18E400A3EE25 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		6DF2CD64286D18E400A3EE25 /* UnsplashRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashRoute.swift; sourceTree = "<group>"; };
+		6DF2CD65286D18E400A3EE25 /* UnsplashService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,85 @@
 		6DF2CD46286D18A500A3EE25 /* Palette */ = {
 			isa = PBXGroup;
 			children = (
+				6DF2CD6F286D190D00A3EE25 /* Controllers */,
+				6DF2CD6E286D190A00A3EE25 /* Views */,
+				6DF2CD5D286D18E400A3EE25 /* Models */,
+				6DF2CD6D286D18ED00A3EE25 /* Resources */,
+				6DF2CD60286D18E400A3EE25 /* Extensions */,
+				6DF2CD5B286D18E400A3EE25 /* ImaggaService */,
+				6DF2CD63286D18E400A3EE25 /* UnsplashService */,
+			);
+			path = Palette;
+			sourceTree = "<group>";
+		};
+		6DF2CD5B286D18E400A3EE25 /* ImaggaService */ = {
+			isa = PBXGroup;
+			children = (
+				6DF2CD5C286D18E400A3EE25 /* ImaggaService.swift */,
+			);
+			path = ImaggaService;
+			sourceTree = "<group>";
+		};
+		6DF2CD5D286D18E400A3EE25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6DF2CD5E286D18E400A3EE25 /* ImaggaColor.swift */,
+				6DF2CD5F286D18E400A3EE25 /* UnsplashPhoto.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6DF2CD60286D18E400A3EE25 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6DF2CD61286D18E400A3EE25 /* UIColor.swift */,
+				6DF2CD62286D18E400A3EE25 /* UIViewExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6DF2CD63286D18E400A3EE25 /* UnsplashService */ = {
+			isa = PBXGroup;
+			children = (
+				6DF2CD64286D18E400A3EE25 /* UnsplashRoute.swift */,
+				6DF2CD65286D18E400A3EE25 /* UnsplashService.swift */,
+			);
+			path = UnsplashService;
+			sourceTree = "<group>";
+		};
+		6DF2CD6D286D18ED00A3EE25 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				6DF2CD47286D18A500A3EE25 /* AppDelegate.swift */,
 				6DF2CD49286D18A500A3EE25 /* SceneDelegate.swift */,
-				6DF2CD4B286D18A500A3EE25 /* ViewController.swift */,
 				6DF2CD4D286D18A500A3EE25 /* Main.storyboard */,
 				6DF2CD50286D18A700A3EE25 /* Assets.xcassets */,
 				6DF2CD52286D18A700A3EE25 /* LaunchScreen.storyboard */,
 				6DF2CD55286D18A700A3EE25 /* Info.plist */,
 			);
-			path = Palette;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6DF2CD6E286D190A00A3EE25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6DF2CD6F286D190D00A3EE25 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6DF2CD70286D1A1F00A3EE25 /* View Controllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6DF2CD70286D1A1F00A3EE25 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +220,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DF2CD4C286D18A500A3EE25 /* ViewController.swift in Sources */,
+				6DF2CD69286D18E400A3EE25 /* UIColor.swift in Sources */,
+				6DF2CD67286D18E400A3EE25 /* ImaggaColor.swift in Sources */,
+				6DF2CD6B286D18E400A3EE25 /* UnsplashRoute.swift in Sources */,
+				6DF2CD66286D18E400A3EE25 /* ImaggaService.swift in Sources */,
 				6DF2CD48286D18A500A3EE25 /* AppDelegate.swift in Sources */,
+				6DF2CD68286D18E400A3EE25 /* UnsplashPhoto.swift in Sources */,
+				6DF2CD6A286D18E400A3EE25 /* UIViewExtension.swift in Sources */,
 				6DF2CD4A286D18A500A3EE25 /* SceneDelegate.swift in Sources */,
+				6DF2CD6C286D18E400A3EE25 /* UnsplashService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +377,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9YD3W98T26;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Palette/Info.plist;
+				INFOPLIST_FILE = Palette/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +405,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9YD3W98T26;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Palette/Info.plist;
+				INFOPLIST_FILE = Palette/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
