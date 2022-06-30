@@ -14,6 +14,7 @@ class PaletteListViewController: UIViewController {
         return self.view.safeAreaLayoutGuide
     }
     
+    // MARK: Source of Truth
     var photos: [UnsplashPhoto] = []
     
     var buttons: [UIButton] {
@@ -99,6 +100,7 @@ class PaletteListViewController: UIViewController {
     
     
     fileprivate func setupButtonStackview() {
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.addArrangedSubview(featureButton)
         buttonStackView.addArrangedSubview(randomButton)
         buttonStackView.addArrangedSubview(doubleRainbowButton)
@@ -106,6 +108,9 @@ class PaletteListViewController: UIViewController {
         buttonStackView.topAnchor.constraint(equalTo: self.safeAreaLayout.topAnchor, constant: 8).isActive = true
         buttonStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayout.leadingAnchor, constant: 8).isActive = true
         buttonStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayout.trailingAnchor, constant: -8).isActive = true
+        
+        /// The below is the same as above, but in one line of code. Lol.
+        //        buttonStackView.anchor(top: safeArea.topAnchor, bottom: nil, leading: safeArea.leadingAnchor, trailing: safeArea.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: SpacingConstants.outerHorizontalPadding, paddingRight: SpacingConstants.outerHorizontalPadding)
     }
     
     // MARK: Views
@@ -139,7 +144,6 @@ class PaletteListViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
