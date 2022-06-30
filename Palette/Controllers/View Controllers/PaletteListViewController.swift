@@ -7,17 +7,52 @@
 
 import UIKit
 
+enum CellIdentifiers: String {
+    case photoCell = "photoCell"
+}
+
 class PaletteListViewController: UIViewController {
     
-    // MARK: Properties
+    // What stuff is on this view that needs controlling? Start here.
+    // 1) Need 3 buttons: Feature, random, double rainbow
+    //   a) Also needed to create a stack view to array the buttons in
+    // 2) Need a table view
+    // 3) Need some cells to sit inside table view.
+        // a) custom cell?? PaletteTableViewCell.
+    
+    // MARK: Property Observers: didSet, willSet, etc
+    // didSet: After the property gets a value set to it, do something
+    // willSet: Before the property gets a value set to it, do something.
+    
+    /// Properties/ source of truth
     var safeAreaLayout: UILayoutGuide {
         return self.view.safeAreaLayoutGuide
     }
     
-    // MARK: Source of Truth
+    var buttons: [UIButton] {
+        return [featureButton, randomButton, doubleRainbowButton]
+    }
+    
+    /// Source of Truth
     var photos: [UnsplashPhoto] = []
     
-    // MARK: Helper functions
+    /// lifecycle
+    override func loadView() {
+        super.loadView()
+        self.addAllSubviews()
+        setupButtonStackview()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .systemIndigo
+        configureTableView()
+        activateButtons()
+        fetchUnsplash()
+    }
+    
+    /// Helper functions
     func fetchUnsplash() {
         UnsplashService.shared.fetchFromUnsplash(for: .featured) { photos in
             DispatchQueue.main.async {
@@ -29,7 +64,7 @@ class PaletteListViewController: UIViewController {
     }
     
     func activateButtons() {
-        featureButton.setTitleColor(UIColor(named: "devMountainBlue"), for: .normal)
+        featureButton.setTitleColor(UIColor.cyan, for: .normal)
         buttons.forEach { button in
             button.addTarget(self, action: #selector(selectButton(sender:)), for: .touchUpInside)
         }
@@ -37,7 +72,8 @@ class PaletteListViewController: UIViewController {
     
     @objc func selectButton(sender: UIButton) {
         buttons.forEach({ $0.setTitleColor(.lightGray, for: .normal)})
-        sender.setTitleColor(UIColor(named: "devMountainBlue"), for: .normal)
+        // MARK: Change the color of the button that was tapped!! "sender"
+        sender.setTitleColor(UIColor.cyan, for: .normal)
         switch sender {
         case featureButton:
             searchForCategory(.featured)
@@ -59,27 +95,7 @@ class PaletteListViewController: UIViewController {
         }
     }
     
-    var buttons: [UIButton] {
-        return [featureButton, randomButton, doubleRainbowButton]
-    }
-
-    // MARK: Lifecycle
-    override func loadView() {
-        super.loadView()
-        self.addAllSubviews()
-        setupButtonStackview()
-        constrainTableView()
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = .systemIndigo
-        configureTableView()
-        fetchUnsplash()
-        activateButtons()
-    }
-        
+    /// View setup
     func addAllSubviews() {
         self.view.addSubview(featureButton)
         self.view.addSubview(randomButton)
@@ -91,29 +107,35 @@ class PaletteListViewController: UIViewController {
     func configureTableView() {
         paletteTableView.delegate = self
         paletteTableView.dataSource = self
-        paletteTableView.register(PaletteTableViewCell.self, forCellReuseIdentifier: "photoCell")
+        paletteTableView.register(PaletteTableViewCell.self, forCellReuseIdentifier: CellIdentifiers.photoCell.rawValue)
+        constrainTableView()
     }
     
     func constrainTableView() {
         paletteTableView.anchor(top: buttonStackView.bottomAnchor, bottom: self.safeAreaLayout.bottomAnchor, leading: self.safeAreaLayout.leadingAnchor, trailing: self.safeAreaLayout.trailingAnchor, paddingTop: 4, paddingBottom: 4, paddingLeft: 4, paddingRight: 4)
     }
     
-    
     fileprivate func setupButtonStackview() {
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.addArrangedSubview(featureButton)
         buttonStackView.addArrangedSubview(randomButton)
         buttonStackView.addArrangedSubview(doubleRainbowButton)
         
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.topAnchor.constraint(equalTo: self.safeAreaLayout.topAnchor, constant: 8).isActive = true
         buttonStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayout.leadingAnchor, constant: 8).isActive = true
         buttonStackView.trailingAnchor.constraint(equalTo: self.safeAreaLayout.trailingAnchor, constant: -8).isActive = true
         
-        /// The below is the same as above, but in one line of code. Lol.
+        // MARK: The below is the same as the above 4 lines, but in one line of code. Sweeeet.
         //        buttonStackView.anchor(top: safeArea.topAnchor, bottom: nil, leading: safeArea.leadingAnchor, trailing: safeArea.trailingAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: SpacingConstants.outerHorizontalPadding, paddingRight: SpacingConstants.outerHorizontalPadding)
+        
+        /// If you give something a top and bottom constraint, if you give it a height it will probably be mad at you.
+        /// If you give something a leading and trailing constraint, if you then give it a width it will also probably be mad at you.
+        
+        /// - == Left (x axis) and up (y axis)
+        /// Non-negative == right (x axis) and down (y axis)
     }
     
-    // MARK: Views
+    /// View creation
     let featureButton: UIButton = {
         let button = UIButton()
         button.setTitle("Featured", for: .normal)
@@ -133,6 +155,7 @@ class PaletteListViewController: UIViewController {
     let doubleRainbowButton: UIButton = {
         let button = UIButton()
         button.setTitle("Double Rainbow", for: .normal)
+        // MARK: can change the button font with the below
 //        button.titleLabel?.font = button.titleLabel?.font.withSize(10)
         button.setTitleColor(.lightGray, for: .normal)
         button.contentHorizontalAlignment = .center
@@ -162,12 +185,15 @@ extension PaletteListViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as? PaletteTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.photoCell.rawValue, for: indexPath) as? PaletteTableViewCell else { return UITableViewCell() }
         cell.photo = self.photos[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        // MARK: To give a precise cell height, the below was used insted of 500.
+        
         // 1) Height of image and image padding
         let outerVerticalPaddingSpace: CGFloat = 2 * SpacingConstants.outerVerticalPadding
         let imageViewSpace: CGFloat = view.frame.width - (2 * SpacingConstants.outerHorizontalPadding)

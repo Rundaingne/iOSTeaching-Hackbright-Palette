@@ -9,14 +9,31 @@ import UIKit
 
 class PaletteTableViewCell: UITableViewCell {
     
-    // MARK: Properties
+    
+    /// source of truth/ variables
+    
+    // MARK: We need what objects in this cell?
+    // 1) UIImage
+    // 2) UILabel
+    // 3) Uhhh...ColorPaletteView. We will create this as its own custom view.
+    
     var photo: UnsplashPhoto? {
         didSet {
+            // MARK: do something once we've received a photo
             updateViews()
         }
     }
     
-    // MARK: Helper Functions
+    /// lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.addAllSubviews()
+        constrainImageView()
+        constrainTitleLabel()
+        constrainColorPaletteView()
+    }
+    
+    /// view update/helper methods
     func updateViews() {
         guard let photo = photo else { return }
         fetchAndSetImage(for: photo)
@@ -40,16 +57,8 @@ class PaletteTableViewCell: UITableViewCell {
             }
         }
     }
-
-    // MARK: Lifecycles
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.addAllSubviews()
-        constrainImageView()
-        constrainTitleLabel()
-        constrainColorPaletteView()
-    }
-        
+    
+    /// View setup
     func addAllSubviews() {
         self.addSubview(paletteImageView)
         self.addSubview(paletteTitleLabel)
@@ -69,7 +78,7 @@ class PaletteTableViewCell: UITableViewCell {
         colorPaletteView.anchor(top: paletteTitleLabel.bottomAnchor, bottom: self.contentView.bottomAnchor, leading: self.contentView.leadingAnchor, trailing: self.contentView.trailingAnchor, paddingTop: SpacingConstants.verticalObjectBuffer, paddingBottom: SpacingConstants.outerVerticalPadding, paddingLeft: SpacingConstants.outerHorizontalPadding, paddingRight: SpacingConstants.outerHorizontalPadding, width: nil, height: SpacingConstants.twoLineElementHeight)
     }
     
-    // MARK: Views
+    /// View creation
     let paletteImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.layer.masksToBounds = true

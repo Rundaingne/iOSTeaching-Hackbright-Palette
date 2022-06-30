@@ -9,6 +9,10 @@ import UIKit
 
 class ColorPaletteView: UIView {
     
+    // MARK: Property Observers: didSet, willSet, etc
+    // didSet: After the property gets a value set to it, do something
+    // willSet: Before the property gets a value set to it, do something.
+
     var colors: [UIColor]? {
         didSet {
             buildColorBricks()
