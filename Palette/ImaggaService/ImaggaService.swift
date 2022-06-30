@@ -14,8 +14,8 @@ class ImaggaService{
     static let shared = ImaggaService()
     private init() {}
     
-    static let baseURLPath = "http://api.imagga.com/v2"
-    static let authenticationToken = "Basic Your-authentication-token-here"
+    static let baseURLPath = "https://api.imagga.com/v2"
+    static let authenticationToken = "Basic YWNjX2I2N2IyZDkxOGVjYjg3YjpmYjI2MmQ4YzQxNjZkY2UxNzk1YmViMzczMjg0MWVjOA=="
     
     func fetchColorsFor(imagePath: String, attempts: Int =  0, completion: @escaping ([UIColor]?) -> Void){
         guard let url = URL(string: ImaggaService.baseURLPath)?.appendingPathComponent("colors") else { completion(nil) ; return }

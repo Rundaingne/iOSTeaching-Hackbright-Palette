@@ -13,6 +13,12 @@ class PaletteListViewController: UIViewController {
     var safeAreaLayout: UILayoutGuide {
         return self.view.safeAreaLayoutGuide
     }
+    
+    var photos: [UnsplashPhoto] = []
+    
+    var buttons: [UIButton] {
+        return [featureButton, randomButton, doubleRainbowButton]
+    }
 
     // MARK: Lifecycle
     override func loadView() {
@@ -27,15 +33,58 @@ class PaletteListViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .systemIndigo
         configureTableView()
+        fetchUnsplash()
+        activateButtons()
     }
     
     // MARK: Helper functions
+    func fetchUnsplash() {
+        UnsplashService.shared.fetchFromUnsplash(for: .featured) { photos in
+            DispatchQueue.main.async {
+                guard let photos = photos else { return }
+                self.photos = photos
+                self.paletteTableView.reloadData()
+            }
+        }
+    }
+    
     func addAllSubviews() {
         self.view.addSubview(featureButton)
         self.view.addSubview(randomButton)
         self.view.addSubview(doubleRainbowButton)
         self.view.addSubview(buttonStackView)
         self.view.addSubview(paletteTableView)
+    }
+    
+    func activateButtons() {
+        featureButton.setTitleColor(UIColor(named: "devMountainBlue"), for: .normal)
+        buttons.forEach { button in
+            button.addTarget(self, action: #selector(selectButton(sender:)), for: .touchUpInside)
+        }
+    }
+    
+    @objc func selectButton(sender: UIButton) {
+        buttons.forEach({ $0.setTitleColor(.lightGray, for: .normal)})
+        sender.setTitleColor(UIColor(named: "devMountainBlue"), for: .normal)
+        switch sender {
+        case featureButton:
+            searchForCategory(.featured)
+        case randomButton:
+            searchForCategory(.random)
+        default:
+            searchForCategory(.doubleRainbow)
+        }
+    }
+    
+    func searchForCategory(_ unsplashRoute: UnsplashRoute) {
+        UnsplashService.shared.fetchFromUnsplash(for: unsplashRoute) { photos in
+            DispatchQueue.main.async {
+                if let photos = photos {
+                    self.photos = photos
+                    self.paletteTableView.reloadData()
+                }
+            }
+        }
     }
     
     func configureTableView() {
@@ -105,13 +154,12 @@ class PaletteListViewController: UIViewController {
 extension PaletteListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.photos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as? PaletteTableViewCell else { return UITableViewCell() }
-        cell.updateViews()
-        
+        cell.photo = self.photos[indexPath.row]
         return cell
     }
     

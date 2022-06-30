@@ -26,7 +26,27 @@ class PaletteTableViewCell: UITableViewCell {
     
     // MARK: Helper Functions
     func updateViews() {
-        colorPaletteView.colors = [.cyan, .green, .blue, .magenta, .orange]
+        guard let photo = photo else { return }
+        fetchAndSetImage(for: photo)
+        paletteTitleLabel.text = photo.description ?? "No photo caption here...👻"
+        fetchAndSetColorStack(for: photo)
+    }
+    
+    func fetchAndSetImage(for photo: UnsplashPhoto) {
+        UnsplashService.shared.fetchImage(for: photo) { image in
+            DispatchQueue.main.async {
+                self.paletteImageView.image = image
+            }
+        }
+    }
+    
+    func fetchAndSetColorStack(for photo: UnsplashPhoto) {
+        ImaggaService.shared.fetchColorsFor(imagePath: photo.urls.regular) { colors in
+            DispatchQueue.main.async {
+                guard let colors = colors else { return }
+                self.colorPaletteView.colors = colors
+            }
+        }
     }
     
     func addAllSubviews() {
@@ -60,7 +80,6 @@ class PaletteTableViewCell: UITableViewCell {
     
     let paletteTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Replace me"
         return label
     }()
     
