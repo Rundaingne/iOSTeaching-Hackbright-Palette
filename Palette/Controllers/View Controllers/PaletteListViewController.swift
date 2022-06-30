@@ -17,27 +17,6 @@ class PaletteListViewController: UIViewController {
     // MARK: Source of Truth
     var photos: [UnsplashPhoto] = []
     
-    var buttons: [UIButton] {
-        return [featureButton, randomButton, doubleRainbowButton]
-    }
-
-    // MARK: Lifecycle
-    override func loadView() {
-        super.loadView()
-        self.addAllSubviews()
-        setupButtonStackview()
-        constrainTableView()
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = .systemIndigo
-        configureTableView()
-        fetchUnsplash()
-        activateButtons()
-    }
-    
     // MARK: Helper functions
     func fetchUnsplash() {
         UnsplashService.shared.fetchFromUnsplash(for: .featured) { photos in
@@ -47,14 +26,6 @@ class PaletteListViewController: UIViewController {
                 self.paletteTableView.reloadData()
             }
         }
-    }
-    
-    func addAllSubviews() {
-        self.view.addSubview(featureButton)
-        self.view.addSubview(randomButton)
-        self.view.addSubview(doubleRainbowButton)
-        self.view.addSubview(buttonStackView)
-        self.view.addSubview(paletteTableView)
     }
     
     func activateButtons() {
@@ -86,6 +57,35 @@ class PaletteListViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    var buttons: [UIButton] {
+        return [featureButton, randomButton, doubleRainbowButton]
+    }
+
+    // MARK: Lifecycle
+    override func loadView() {
+        super.loadView()
+        self.addAllSubviews()
+        setupButtonStackview()
+        constrainTableView()
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .systemIndigo
+        configureTableView()
+        fetchUnsplash()
+        activateButtons()
+    }
+        
+    func addAllSubviews() {
+        self.view.addSubview(featureButton)
+        self.view.addSubview(randomButton)
+        self.view.addSubview(doubleRainbowButton)
+        self.view.addSubview(buttonStackView)
+        self.view.addSubview(paletteTableView)
     }
     
     func configureTableView() {

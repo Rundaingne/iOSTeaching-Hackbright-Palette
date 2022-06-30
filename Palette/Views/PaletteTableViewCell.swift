@@ -15,14 +15,6 @@ class PaletteTableViewCell: UITableViewCell {
             updateViews()
         }
     }
-    // MARK: Lifecycles
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.addAllSubviews()
-        constrainImageView()
-        constrainTitleLabel()
-        constrainColorPaletteView()
-    }
     
     // MARK: Helper Functions
     func updateViews() {
@@ -48,7 +40,16 @@ class PaletteTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
+    // MARK: Lifecycles
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.addAllSubviews()
+        constrainImageView()
+        constrainTitleLabel()
+        constrainColorPaletteView()
+    }
+        
     func addAllSubviews() {
         self.addSubview(paletteImageView)
         self.addSubview(paletteTitleLabel)
